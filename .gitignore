@@ -1,11 +1,13 @@
-# Documentation - Only 4 files allowed on README:
-# ✓ README.md (main overview with quick links)
-# ✓ INSTALLATION.md (setup & deployment guide)
-# ✓ FEATURES.md (feature list)
-# ✓ API_DOCUMENTATION.md (API endpoints & examples)
-# All other doc files ignored:
-LICENSE.md
+# Documentation - Only 3 files on GitHub:
+# ✓ README.md (project overview - beautiful, non-technical)
+# ✓ TECHNICAL.md (technical details, architecture, API)
+# ✓ LICENSE.md (licensing information)
+# All other doc files kept locally but not pushed:
 PROJECT_COMPREHENSIVE_ANALYSIS.md
+INSTALLATION.md
+FEATURES.md
+API_DOCUMENTATION.md
+README_NEW.md
 DOCS_*.md
 doc_*.md
 *_DRAFT.md
