@@ -11,92 +11,55 @@ Secure file management with **end-to-end encryption**, **role-based access contr
 
 ## 📋 Quick Links
 
-- 📖 [**Installation Guide**](INSTALLATION.md) - Setup instructions
-- ✨ [**Features**](FEATURES.md) - Complete feature list
-- 🔌 [**API Documentation**](API_DOCUMENTATION.md) - Endpoint reference
-- ⚖️ [**License**](LICENSE.md) - MIT License
-- 📚 [**Technical Docs**](PROJECT_COMPREHENSIVE_ANALYSIS.md) - Deep dive architecture
+- 📖 [**Installation Guide**](INSTALLATION.md) - Setup in 4 steps
+- ✨ [**Features**](FEATURES.md) - What you get
+- 🔌 [**API**](API_DOCUMENTATION.md) - All endpoints
 
 ---
 
-## 🎯 What is SecureFile?
+## ⚡ Quick Start (4 Steps)
 
-SecureFile enables **secure file management and collaboration** with:
+```bash
+# 1. Clone
+git clone https://github.com/Hariom-Pandey/SecureFile.git && cd SecureFile
 
-- 🔐 **End-to-End Encryption** - Files encrypted before transmission
-- 👥 **Fine-Grained Sharing** - Control who accesses what and when
-- 🛡️ **Threat Detection** - Malware scanning, injection prevention
-- 📊 **AI Insights** - Automatic summarization and keyword extraction
-- 📝 **Audit Trails** - Complete history of all file operations
-- 🤖 **AI Bot** - Conversational guidance for file operations
+# 2. Setup
+python -m venv .venv && .venv\Scripts\Activate.ps1
+
+# 3. Install
+pip install -r project/requirements.txt && cd project
+
+# 4. Run
+python main.py  # → http://127.0.0.1:5000/login
+```
+
+👉 [Full setup guide →](INSTALLATION.md)
 
 ---
 
-## ⚡ Quick Start
+## 🔑 Core Features
 
-### 1. Clone Repository
-```bash
-git clone https://github.com/Hariom-Pandey/SecureFile.git
-cd SecureFile
-```
+🔒 **AES-128 Encryption** • 👤 **JWT + 2FA** • 📤 **Permissions** • 🔍 **Threat Detection** • 📊 **Audit Logs** • 🤖 **AI Assistant** • 🎨 **Dark/Light Mode**
 
-### 2. Setup Virtual Environment
-```bash
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1  # Windows
-source venv/bin/activate       # macOS/Linux
-```
-
-### 3. Install Dependencies
-```bash
-pip install -r project/requirements.txt
-```
-
-### 4. Run Application
-```bash
-cd project
-python main.py
-```
-
-**Access at:** `http://127.0.0.1:5000/login`
-
-📖 See [**INSTALLATION.md**](INSTALLATION.md) for detailed setup instructions.
+👉 [Complete features →](FEATURES.md)
 
 ---
 
-## 🔑 Key Features
+## 🔌 API Quick Example
 
-| Feature | Description |
-|---------|-------------|
-| 🔒 **Encryption** | AES-128 encryption at rest |
-| 👤 **Auth** | JWT + 2FA (6-digit PIN) |
-| 📤 **Share** | Fine-grained permissions (read/write) |
-| 🔍 **Detect** | Malware scanning + injection prevention |
-| 📊 **Audit** | Complete action logging |
-| 🤖 **AI** | File insights + bot assistant |
-| 🎨 **Themes** | Dark & light mode support |
-
-📚 See [**FEATURES.md**](FEATURES.md) for complete feature list.
-
----
-
-## 🔌 API Example
-
-### Register User
 ```bash
+# Register user
 curl -X POST http://127.0.0.1:5000/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "john", "password": "SecurePass123!"}'
-```
+  -d '{"username": "john", "password": "Pass123!"}'
 
-### Upload File
-```bash
+# Upload file (need token)
 curl -X POST http://127.0.0.1:5000/api/files/upload \
-  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Authorization: Bearer TOKEN" \
   -F "file=@document.pdf"
 ```
 
-🔌 See [**API_DOCUMENTATION.md**](API_DOCUMENTATION.md) for all endpoints.
+👉 [All endpoints →](API_DOCUMENTATION.md)
 
 ---
 
@@ -121,8 +84,6 @@ pytest project/tests/test_auth.py -v
 - **Access**: Role-based control (Admin/User/Viewer)
 - **Threats**: Malware + injection + buffer overflow detection
 - **Audit**: Immutable action logging
-
-📚 See [**PROJECT_COMPREHENSIVE_ANALYSIS.md**](PROJECT_COMPREHENSIVE_ANALYSIS.md) for security details.
 
 ---
 
@@ -152,37 +113,18 @@ SecureFile/
 
 ---
 
-## 🚀 Next Steps
+## 🚀 Getting Started
 
-1. **[Install Now](INSTALLATION.md)** - Get started in 5 minutes
-2. **[Explore Features](FEATURES.md)** - See what SecureFile can do
-3. **[Check API Docs](API_DOCUMENTATION.md)** - Integrate with your app
-4. **[Read Technical Docs](PROJECT_COMPREHENSIVE_ANALYSIS.md)** - Understand architecture
-
----
-
-## 🤝 Contributing
-
-Contributions welcome! Please:
-1. Fork the repository
-2. Create feature branch
-3. Submit pull request
+1. **[Installation](INSTALLATION.md)** - Setup in 4 steps
+2. **[Features](FEATURES.md)** - What's included
+3. **[API Docs](API_DOCUMENTATION.md)** - All endpoints
 
 ---
 
 ## 📝 License
 
-Licensed under the **[MIT License](LICENSE.md)** - free to use commercially.
+MIT License - See [LICENSE.md](LICENSE.md)
 
 ---
 
-## 📞 Support
-
-- 📖 Check [INSTALLATION.md](INSTALLATION.md) for setup issues
-- 🐛 Report bugs via GitHub issues
-- 💡 Request features via GitHub discussions
-
----
-
-**Made by [Hariom Pandey](https://github.com/Hariom-Pandey)**  
-*Secure. Simple. Scalable.*
+**Secure. Simple. Scalable.** ✨
