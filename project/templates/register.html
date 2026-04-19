@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Secure File Manager</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <h1>📝 Create Account</h1>
+            <p class="subtitle">Register for Secure File Manager</p>
+
+            <div id="alert" class="alert"></div>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="3-30 characters (letters, numbers, _)" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Min 8 chars, upper, lower, digit, special" required autocomplete="new-password">
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Re-enter password" required autocomplete="new-password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+            </form>
+
+            <p class="text-center mt-4 text-muted">
+                Already have an account? <a href="/login" id="loginLink">Sign in</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="../static/js/api.js"></script>
+    <script>
+        const loginLink = document.getElementById('loginLink');
+        const registerForm = document.getElementById('registerForm');
+
+        loginLink.href = pageUrl('login');
+
+        (async function ensureValidSession() {
+            if (!API.getToken()) return;
+            const { status } = await API.get('/auth/me');
+            if (status === 200) {
+                goToPage('dashboard');
+            } else {
+                API.clearToken();
+            }
+        })();
+
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideAlert('alert');
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const confirm  = document.getElementById('confirmPassword').value;
+
+            if (password !== confirm) {
+                showAlert('alert', 'Passwords do not match.');
+                return;
+            }
+
+            const { status, data } = await API.post('/auth/register', { username, password });
+
+            if (status === 201) {
+                showAlert('alert', 'Account created! Redirecting to login...', 'success');
+                setTimeout(() => goToPage('login'), 1500);
+            } else {
+                showAlert('alert', data.error || 'Registration failed.');
+            }
+        });
+    </script>
+</body>
+</html>

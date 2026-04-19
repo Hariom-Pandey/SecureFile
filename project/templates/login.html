@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Secure File Manager</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <h1>🔐 Secure File Manager</h1>
+            <p class="subtitle">Sign in to your account</p>
+
+            <div id="alert" class="alert"></div>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="Enter username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Sign In</button>
+            </form>
+
+            <!-- PIN Form (hidden by default) -->
+            <form id="twoFaForm" class="hidden">
+                <p class="text-muted mb-4">Enter your 6-digit security PIN.</p>
+                <div class="form-group">
+                    <label>Security PIN</label>
+                    <input type="password" id="otpCode" placeholder="000000" maxlength="6" required
+                           pattern="[0-9]{6}" inputmode="numeric" autocomplete="one-time-code">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Verify PIN</button>
+            </form>
+
+            <p class="text-center mt-4 text-muted">
+                Don't have an account? <a href="/register" id="registerLink">Create one</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="../static/js/api.js"></script>
+    <script>
+        const registerLink = document.getElementById('registerLink');
+        const loginForm = document.getElementById('loginForm');
+        const twoFaForm = document.getElementById('twoFaForm');
+
+        registerLink.href = pageUrl('register');
+
+        (async function ensureValidSession() {
+            if (!API.getToken()) return;
+            const { status } = await API.get('/auth/me');
+            if (status === 200) {
+                goToPage('dashboard');
+            } else {
+                API.clearToken();
+            }
+        })();
+
+        let tempToken = null;
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideAlert('alert');
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            const { status, data } = await API.post('/auth/login', { username, password });
+
+            if (status === 200 && data.requires_2fa) {
+                tempToken = data.temp_token;
+                loginForm.classList.add('hidden');
+                twoFaForm.classList.remove('hidden');
+                showAlert('alert', 'Enter your security PIN to continue.', 'info');
+                return;
+            }
+
+            if (status === 200 && data.access_token) {
+                API.setToken(data.access_token);
+                API.setUser(data.user);
+                goToPage('dashboard');
+                return;
+            }
+
+            showAlert('alert', data.error || 'Login failed.');
+        });
+
+        twoFaForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideAlert('alert');
+
+            const otpCode = document.getElementById('otpCode').value.trim();
+            if (!/^\d{6}$/.test(otpCode)) {
+                showAlert('alert', 'PIN must be exactly 6 digits.');
+                return;
+            }
+
+            const prevToken = API.getToken();
+            API.setToken(tempToken);
+
+            const { status, data } = await API.post('/auth/verify-2fa', { pin_code: otpCode });
+
+            if (status === 200 && data.access_token) {
+                API.setToken(data.access_token);
+                API.setUser(data.user);
+                goToPage('dashboard');
+                return;
+            }
+
+            if (prevToken) API.setToken(prevToken);
+            else API.clearToken();
+
+            showAlert('alert', data.error || 'Verification failed.');
+        });
+    </script>
+</body>
+</html>

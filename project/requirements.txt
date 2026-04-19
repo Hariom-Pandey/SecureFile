@@ -1,0 +1,14 @@
+Flask==3.0.0
+Flask-JWT-Extended==4.6.0
+bcrypt==4.1.2
+pyotp==2.9.0
+qrcode==7.4.2
+cryptography==41.0.7
+Werkzeug==3.0.1
+python-docx==1.1.2
+openpyxl==3.1.5
+python-pptx==0.6.23
+Pillow==10.4.0
+pypdf==4.3.1
+groq==0.11.0
+pywin32==306

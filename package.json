@@ -1,0 +1,14 @@
+{
+  "name": "secure-file-management-system",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "server": ".venv\\Scripts\\python.exe main.py",
+    "dev": "http-server project -a 127.0.0.1 -p 3000 -c-1",
+    "start": "concurrently \"npm run dev\" \"npm run server\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "http-server": "^14.1.1"
+  }
+}
