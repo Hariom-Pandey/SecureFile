@@ -62,42 +62,30 @@ pip-delete-this-directory.txt
 .DS_Store
 Thumbs.db
 
-# Testing
+# Testing & Temporary
 .pytest_cache/
 .coverage
 htmlcov/
-
-# Node.js (if used)
-node_modules/
-npm-debug.log
-yarn-error.log
-
-# OS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-
-# Temporary files
-*.tmp
-*.temp
-*.bak
-*.backup
+test_*.py
+tmp_*.py
+push_output.txt
+pytest_output.txt
+validation_output.txt
+*_test.py
+*_debug.py
 
 # Logs
 *.log
 logs/
-pytest_output.txt
-validation_output.txt
-
-# Root level test files (use project/tests instead)
-test_*.py
-tmp_*.py
-push_output.txt
 
 # Config files with secrets
 config.local.py
+config.*.py
 secrets.json
 credentials.json
+auth.json
+*_secrets.py
+*.key
+*.pem
+*.p12
+*.pfx
