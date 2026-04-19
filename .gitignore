@@ -1,3 +1,20 @@
+# Documentation - Only these files are allowed:
+# ✓ README.md (main overview with quick links)
+# ✓ INSTALLATION.md (setup & deployment guide)
+# ✓ FEATURES.md (feature list)
+# ✓ API_DOCUMENTATION.md (API endpoints & examples)
+# ✓ LICENSE.md (licensing information)
+# ✓ PROJECT_COMPREHENSIVE_ANALYSIS.md (technical deep dive)
+# All other .md and doc files below these will be ignored
+DOCS_*.md
+doc_*.md
+*_DRAFT.md
+*_OLD.md
+*.doc
+*.docx
+.drafts/
+docs_archive/
+
 # Virtual Environment
 .venv/
 venv/
