@@ -72,6 +72,13 @@ ehthumbs.db
 # Logs
 *.log
 logs/
+pytest_output.txt
+validation_output.txt
+
+# Root level test files (use project/tests instead)
+test_*.py
+tmp_*.py
+push_output.txt
 
 # Config files with secrets
 config.local.py
