@@ -96,7 +96,7 @@ cd project && python main.py
 
 ### Security Standards
 
-✅ **AES-128 Encryption** (military-grade)  
+✅ **AES-256 Encryption** (military-grade)  
 ✅ **Two-Factor Authentication** (6-digit PIN)  
 ✅ **Bcrypt Password Hashing** (12-round salt)  
 ✅ **Zero-Knowledge Architecture** (we can't see your files)  
