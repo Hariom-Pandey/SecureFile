@@ -30,7 +30,7 @@
 
 | | |
 |---|---|
-| 🔐 **Military-Grade Encryption** | AES-128 encryption your files before anyone touches them |
+| 🔐 **Military-Grade Encryption** | AES-256 encryption your files before anyone touches them |
 | 🔑 **You Control Everything** | Only you hold the encryption keys - not us, not admins |
 | 👥 **Smart Sharing** | Grant specific permissions to specific people for specific times |
 | 📊 **See Everything** | Complete audit trail of every access, download, and action |
@@ -160,7 +160,7 @@ Just your files. Encrypted. Safe.
 ## ❓ Common Questions
 
 **Is my data really encrypted?**  
-Yes. AES-128 encryption applied before your file leaves your device. We literally cannot see your files.
+Yes. AES-256 encryption applied before your file leaves your device. We literally cannot see your files.
 
 **What if I forget my password?**  
 Your files remain encrypted. There's no master key. Change your password on the next login.
