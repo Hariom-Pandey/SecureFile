@@ -1,7 +1,7 @@
 # 🔐 SecureFile
 ## Your Trusted Secure Vault for Confidential Files
 
-**Enterprise-Grade Encryption. Complete Control. Peace of Mind.**
+**Enterprise-Grade Encryption. Complete Control. Peace of the Mind.**
 
 > Stop worrying about file security. SecureFile handles encryption, sharing, and compliance automatically.
 
